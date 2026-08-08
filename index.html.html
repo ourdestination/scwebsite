@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMON COMPUTER</title>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #f0f6fc;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Twinkle Lighting Effect Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #fff;
+            animation: twinkle var(--duration, 2s) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Top Marquee Bar */
+        .top-marquee {
+            background: linear-gradient(90deg, #1f2937, #111827);
+            color: #38bdf8;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #374151;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(22, 27, 34, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #30363d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: #38bdf8;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .auth-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .auth-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+        }
+
+        .logout-btn {
+            background: #dc2626 !important;
+        }
+
+        .logout-btn:hover {
+            background: #b91c1c !important;
+            box-shadow: 0 0 10px rgba(220, 38, 38, 0.5) !important;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Shop Info Card */
+        .info-card {
+            background: rgba(22, 27, 34, 0.7);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-item i {
+            font-size: 24px;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        .info-item div h4 {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .info-item div p {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #f3f4f6;
+            border-left: 4px solid #2563eb;
+            padding-left: 10px;
+        }
+
+        /* Admin Panel Grid */
+        #admin-panel {
+            display: none;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .admin-box {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        /* Layout Grid for Notice & Tabs */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 850px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notice Board Styling */
+        .notice-board {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 18px;
+            height: fit-content;
+        }
+
+        .notice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .notice-card {
+            background: rgba(13, 17, 23, 0.8);
+            border-left: 3px solid #f59e0b;
+            border-radius: 6px;
+            padding: 12px;
+            position: relative;
+        }
+
+        .notice-title {
+            font-size: 16px;
+            color: #fbbf24;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .notice-desc {
+            font-size: 13px;
+            color: #d1d5db;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            white-space: pre-wrap; /* প্যারা প্যারা সুন্দরভাবে দেখানোর জন্য */
+        }
+
+        .notice-expiry {
+            font-size: 11px;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Tabs Grid */
+        .tabs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .tab-card {
+            background: rgba(22, 27, 34, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tab-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.1);
+        }
+
+        .tab-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tab-header i {
+            font-size: 20px;
+            color: #38bdf8;
+        }
+
+        .tab-header h3 {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .tab-desc {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: pre-wrap;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        .view-btn {
+            background: transparent;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+        }
+
+        .view-btn:hover {
+            background: #38bdf8;
+            color: #0d1117;
+        }
+
+        .edit-btn {
+            background: #eab308;
+            color: #0d1117;
+            font-weight: 600;
+            display: none;
+        }
+
+        .edit-btn:hover {
+            background: #ca8a04;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+            font-weight: 600;
+            display: none;
+        }
+
+        .delete-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Review Section Styling inside Admin */
+        .feedback-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .feedback-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            padding: 10px 12px;
+            border-radius: 6px;
+        }
+
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #38bdf8;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .feedback-text {
+            font-size: 13px;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+
+        .feedback-time {
+            font-size: 10px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* Modal / Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #9ca3af;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 9px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: #2563eb;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 9px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Floating Action Buttons Container */
+        .floating-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: #FFF;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn {
+            background-color: #25d366;
+            animation: pulse 2s infinite;
+        }
+
+        .feedback-btn {
+            background-color: #38bdf8;
+            color: #0d1117;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Stars -->
+    <div class="stars" id="stars-container"></div>
+
+    <!-- Top Running Marquee -->
+    <div class="top-marquee">
+        <marquee scrollamount="4" behavior="scroll" direction="left">
+            This Website Made by Hredoy Roy, Phone: +088 01518 411872; +880 1345 409887, Email: 100pc.net@gmail.com, Address: Krishnabila, Gangnalia-7610, Magura Sadar, Magura.
+        </marquee>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo-area">
+            <i class="fa-solid fa-desktop logo-icon"></i>
+            <div class="logo-text">
+                <h1>SUMON COMPUTER</h1>
+                <p>Hredoy Roy - Computer Operator</p>
+            </div>
+        </div>
+        <button class="auth-btn" id="authBtn" onclick="toggleAuth()">Login</button>
+    </header>
+
+    <div class="container">
+
+        <!-- Shop Info Section -->
+        <div class="info-card">
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h4>ঠিকানা</h4>
+                    <p>Khan Trade Center, Janata Bank More, Faridpur.</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h4>মোবাইল</h4>
+                    <p>01518-411872 / 01571-524152</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h4>ইমেইল</h4>
+                    <p>100pc.net@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Control Panel -->
+        <div id="admin-panel">
+            <div class="admin-grid">
+                <!-- Tab Form -->
+                <div class="admin-box">
+                    <h4 style="color: #38bdf8; margin-bottom: 10px;" id="tabPanelTitle"><i class="fa-solid fa-plus-circle"></i> নতুন সার্ভিস/ট্যাব যুক্ত করুন</h4>
+                    <form id="tabForm">
+                        <input type="hidden" id="editTabId" value="">
+                        <div class="form-group">
+                            <label>আইকন</label>
+                            <select id="tabIcon" onchange="checkManualIconOption()">
+                                <option value="fa-laptop-code">কম্পিউটার সেবা</option>
+                                <option value="fa-print">প্রিন্টিং ও স্ক্যান</option>
+                                <option value="fa-file-lines">ডকুমেন্ট ও টাইপিং</option>
+                                <option value="fa-graduation-cap">অনলাইন আবেদন</option>
+                                <option value="fa-wrench">সার্ভিসিং</option>
+                                <option value="manual">অন্যান্য (ম্যানুয়ালি লিখুন)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="manualIconGroup" style="display: none;">
+                            <label>আইকন ক্লাস (যেমন: fa-gear)</label>
+                            <input type="text" id="manualIconInput" placeholder="fa-gear">
+                        </div>
+                        <div class="form-group">
+                            <label>টাইটেল</label>
+                            <input type="text" id="tabTitle" placeholder="যেমন: অনলাইন আবেদন" required>
+                        </div>
+                        <div class="form-group">
+                            <label>বিবরণ</label>
+                            <textarea id="tabDesc" rows="3" placeholder="বিবরণ লিখুন..." required></textarea>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" class="submit-btn" style="background:#10b981;" id="saveTabBtn" onclick="saveTab()">পাবলিশ করুন</button>
+                            <button type="button" class="submit-btn" style="background:#6b7280; display: none;" id="cancelTabBtn" onclick="resetTabForm()">বাতিল</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Notice Form -->
+                <div class="admin-box">
+                    <h4 style="color: #f59e0b; margin-bottom: 10px;" id="noticePanelTitle"><i class="fa-solid fa-bullhorn"></i> নতুন নোটিশ পাবলিশ করুন</h4>
+                    <form id="noticeForm">
+                        <input type="hidden" id="editNoticeId" value="">
+                        <div class="form-group">
+                            <label>নোটিশ টাইটেল</label>
+                            <input type="text" id="noticeTitle" placeholder="যেমন: ঈদ উপলক্ষে দোকান বন্ধের নোটিশ" required>
+                        </div>
+                        <div class="form-group">
+                            <label>বিবরণ</label>
+                            <textarea id="noticeDesc" rows="3" placeholder="নোটিশের বিবরণ..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>অটোমেটিক ডিলিট হওয়ার তারিখ (Expiry Date)</label>
+                            <input type="date" id="noticeExpiry" required>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" class="submit-btn" style="background:#f59e0b;" id="saveNoticeBtn" onclick="saveNotice()">নোটিশ পোস্ট করুন</button>
+                            <button type="button" class="submit-btn" style="background:#6b7280; display: none;" id="cancelNoticeBtn" onclick="resetNoticeForm()">বাতিল</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Customer Feedbacks/Reviews Admin View -->
+            <div class="admin-box" style="margin-top: 20px;">
+                <h4 style="color: #38bdf8; margin-bottom: 10px;"><i class="fa-solid fa-comments"></i> কাস্টমারদের মতামত / রিভিউ</h4>
+                <div class="feedback-list" id="adminFeedbackContainer">
+                    <p style="color:#9ca3af; font-size:13px;">রিভিউ লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Layout (Left Notice, Right Tabs) -->
+        <div class="main-layout">
+            
+            <!-- Left Side: Notice Board -->
+            <aside class="notice-board">
+                <h2 class="section-title" style="border-color: #f59e0b;"><i class="fa-solid fa-bell"></i> নোটিশ বোর্ড</h2>
+                <div class="notice-list" id="noticeContainer">
+                    <p style="color:#9ca3af; font-size:13px;">নোটিশ লোড হচ্ছে...</p>
+                </div>
+            </aside>
+
+            <!-- Right Side: Services / Tabs -->
+            <main>
+                <h2 class="section-title"><i class="fa-solid fa-list-check"></i> আমাদের সেবাসমূহ</h2>
+                <div class="tabs-grid" id="tabsContainer">
+                    <p style="color:#9ca3af; font-size:14px;">সেবাসমূহ লোড হচ্ছে...</p>
+                </div>
+            </main>
+
+        </div>
+
+    </div>
+
+    <!-- Floating Buttons Container -->
+    <div class="floating-container">
+        <!-- Customer Feedback Button -->
+        <button class="float-btn feedback-btn" onclick="openFeedbackModal()" title="আপনার মতামত দিন">
+            <i class="fa-solid fa-comment-dots"></i>
+        </button>
+        <!-- Floating WhatsApp -->
+        <a href="https://wa.me/8801518411872" class="float-btn whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h3 class="modal-title"><i class="fa-solid fa-lock"></i> এডমিন লগইন</h3>
+            <div class="form-group">
+                <label>User ID</label>
+                <input type="text" id="username" placeholder="Enter ID">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter Password">
+            </div>
+            <p id="loginError" style="color: #ef4444; font-size: 13px; display: none; margin-bottom: 10px;">ভুল ID অথবা Password!</p>
+            <button class="submit-btn" onclick="handleLogin()">লগইন করুন</button>
+        </div>
+    </div>
+
+    <!-- Customer Feedback Modal -->
+    <div class="modal" id="feedbackModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeFeedbackModal()">&times;</span>
+            <h3 class="modal-title"><i class="fa-solid fa-star"></i> আপনার মূল্যবান মতামত দিন</h3>
+            <div class="form-group">
+                <label>আপনার নাম *</label>
+                <input type="text" id="fbName" placeholder="যেমন: মো: রহিম" required>
+            </div>
+            <div class="form-group">
+                <label>মোবাইল নম্বর (ঐচ্ছিক)</label>
+                <input type="text" id="fbPhone" placeholder="017xxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>আপনার মতামত / মন্তব্য *</label>
+                <textarea id="fbComment" rows="4" placeholder="আপনার মতামত লিখুন..." required></textarea>
+            </div>
+            <button class="submit-btn" style="background:#38bdf8; color:#0d1117;" onclick="submitFeedback()">মতামত পাঠান</button>
+        </div>
+    </div>
+
+    <!-- Details View Modal -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDetailsModal()">&times;</span>
+            <h3 class="modal-title" id="detModalTitle" style="color:#38bdf8;"></h3>
+            <p id="detModalDesc" style="color:#d1d5db; line-height: 1.6; font-size: 15px; margin-top: 10px; white-space: pre-wrap;"></p>
+        </div>
+    </div>
+
+    <!-- Firebase Modular SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
+
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDURocP9xRxTikMZxtBxsmKsE5YuKZFCXM",
+            authDomain: "scwebsite-c25bb.firebaseapp.com",
+            databaseURL: "https://scwebsite-c25bb-default-rtdb.firebaseio.com",
+            projectId: "scwebsite-c25bb",
+            storageBucket: "scwebsite-c25bb.firebasestorage.app",
+            messagingSenderId: "1047293322830",
+            appId: "1:1047293322830:web:380b68193f57bba329851f",
+            measurementId: "G-25BL6QPCT1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Global state
+        window.isLoggedIn = false;
+        window.dbData = { tabs: {}, notices: {}, feedbacks: {} };
+
+        // Background Stars Animation
+        const starsContainer = document.getElementById('stars-container');
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${1 + Math.random() * 3}s`);
+            starsContainer.appendChild(star);
+        }
+
+        // --- Realtime Database Listeners ---
+
+        // Listen for Tabs Data
+        const tabsRef = ref(db, 'tabs');
+        onValue(tabsRef, (snapshot) => {
+            const data = snapshot.val() || {};
+            window.dbData.tabs = data;
+            renderTabs();
+        });
+
+        // Listen for Notices Data & Auto-Delete Expired Notices
+        const noticesRef = ref(db, 'notices');
+        onValue(noticesRef, (snapshot) => {
+            const data = snapshot.val() || {};
+            const today = new Date().toISOString().split('T')[0];
+
+            Object.keys(data).forEach(key => {
+                if (data[key].expiry && data[key].expiry < today) {
+                    remove(ref(db, `notices/${key}`));
+                    delete data[key];
+                }
+            });
+
+            window.dbData.notices = data;
+            renderNotices();
+        });
+
+        // Listen for Feedbacks Data
+        const fbRef = ref(db, 'feedbacks');
+        onValue(fbRef, (snapshot) => {
+            const data = snapshot.val() || {};
+            window.dbData.feedbacks = data;
+            renderAdminFeedbacks();
+        });
+
+        // --- Render Functions ---
+
+        window.renderTabs = function() {
+            const tabsContainer = document.getElementById('tabsContainer');
+            tabsContainer.innerHTML = '';
+
+            const keys = Object.keys(window.dbData.tabs);
+            if (keys.length === 0) {
+                tabsContainer.innerHTML = '<p style="color:#9ca3af; font-size:14px;">কোন সেবাসমূহ পাওয়া যায়নি।</p>';
+                return;
+            }
+
+            keys.reverse().forEach(key => {
+                const tab = window.dbData.tabs[key];
+                const card = document.createElement('div');
+                card.className = 'tab-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="tab-header">
+                            <i class="fa-solid ${tab.icon}"></i>
+                            <h3>${escapeHtml(tab.title)}</h3>
+                        </div>
+                        <p class="tab-desc">${escapeHtml(tab.desc)}</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-sm view-btn" onclick="showDetails('${key}')">বিবরণ দেখুন</button>
+                        <button class="btn-sm edit-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="editTab('${key}')"><i class="fa-solid fa-pen"></i> এডিট</button>
+                        <button class="btn-sm delete-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="deleteTab('${key}')"><i class="fa-solid fa-trash"></i> ডিলিট</button>
+                    </div>
+                `;
+                tabsContainer.appendChild(card);
+            });
+        };
+
+        window.renderNotices = function() {
+            const noticeContainer = document.getElementById('noticeContainer');
+            noticeContainer.innerHTML = '';
+
+            const keys = Object.keys(window.dbData.notices);
+            if (keys.length === 0) {
+                noticeContainer.innerHTML = '<p style="color:#9ca3af; font-size:13px;">বর্তমানে কোনো নোটিশ নেই।</p>';
+                return;
+            }
+
+            keys.reverse().forEach(key => {
+                const notice = window.dbData.notices[key];
+                const card = document.createElement('div');
+                card.className = 'notice-card';
+                card.innerHTML = `
+                    <div class="notice-title">${escapeHtml(notice.title)}</div>
+                    <div class="notice-desc">${escapeHtml(notice.desc)}</div>
+                    <div class="notice-expiry"><i class="fa-regular fa-clock"></i> মেয়াদ: ${notice.expiry}</div>
+                    <div class="card-actions" style="margin-top: 8px;">
+                        <button class="btn-sm edit-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="editNotice('${key}')"><i class="fa-solid fa-pen"></i> এডিট</button>
+                        <button class="btn-sm delete-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="deleteNotice('${key}')"><i class="fa-solid fa-trash"></i> ডিলিট</button>
+                    </div>
+                `;
+                noticeContainer.appendChild(card);
+            });
+        };
+
+        window.renderAdminFeedbacks = function() {
+            const container = document.getElementById('adminFeedbackContainer');
+            container.innerHTML = '';
+
+            const keys = Object.keys(window.dbData.feedbacks);
+            if (keys.length === 0) {
+                container.innerHTML = '<p style="color:#9ca3af; font-size:13px;">এখনো কোনো মতামত জমা হয়নি।</p>';
+                return;
+            }
+
+            keys.reverse().forEach(key => {
+                const fb = window.dbData.feedbacks[key];
+                const card = document.createElement('div');
+                card.className = 'feedback-card';
+                card.innerHTML = `
+                    <div class="feedback-header">
+                        <span><i class="fa-solid fa-user"></i> ${escapeHtml(fb.name)} ${fb.phone ? '(' + escapeHtml(fb.phone) + ')' : ''}</span>
+                        <button class="btn-sm delete-btn" style="display: inline-block;" onclick="deleteFeedback('${key}')"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <div class="feedback-text">${escapeHtml(fb.comment)}</div>
+                    <div class="feedback-time"><i class="fa-regular fa-clock"></i> ${fb.date || ''}</div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        // --- Database Actions (Feedback) ---
+
+        window.submitFeedback = function() {
+            const name = document.getElementById('fbName').value.trim();
+            const phone = document.getElementById('fbPhone').value.trim();
+            const comment = document.getElementById('fbComment').value.trim();
+
+            if (!name || !comment) {
+                alert('দয়া করে নাম এবং মতামতের ঘরটি পূরণ করুন।');
+                return;
+            }
+
+            const feedbackData = {
+                name: name,
+                phone: phone,
+                comment: comment,
+                date: new Date().toLocaleString('bn-BD')
+            };
+
+            push(ref(db, 'feedbacks'), feedbackData)
+                .then(() => {
+                    alert('আপনার মতামতের জন্য ধন্যবাদ!');
+                    closeFeedbackModal();
+                    document.getElementById('fbName').value = '';
+                    document.getElementById('fbPhone').value = '';
+                    document.getElementById('fbComment').value = '';
+                })
+                .catch(() => {
+                    alert('মতামত পাঠাতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।');
+                });
+        };
+
+        window.deleteFeedback = function(id) {
+            if (confirm('আপনি কি এই মতামতটি মুছে ফেলতে চান?')) {
+                remove(ref(db, `feedbacks/${id}`));
+            }
+        };
+
+        // --- Database Actions (Tabs) ---
+
+        window.saveTab = function() {
+            const editId = document.getElementById('editTabId').value;
+            const selectIcon = document.getElementById('tabIcon').value;
+            const manualIcon = document.getElementById('manualIconInput').value.trim();
+            const title = document.getElementById('tabTitle').value.trim();
+            const desc = document.getElementById('tabDesc').value.trim();
+
+            let finalIcon = selectIcon === 'manual' ? manualIcon : selectIcon;
+
+            if (!finalIcon || !title || !desc) {
+                alert('দয়া করে সকল তথ্য সঠিকভাবে পূরণ করুন।');
+                return;
+            }
+
+            const tabData = { icon: finalIcon, title: title, desc: desc };
+
+            if (editId) {
+                update(ref(db, `tabs/${editId}`), tabData);
+                alert('ট্যাব আপডেট সফল হয়েছে!');
+            } else {
+                push(ref(db, 'tabs'), tabData);
+                alert('নতুন ট্যাব ডেটাবেজে যুক্ত হয়েছে!');
+            }
+
+            resetTabForm();
+        };
+
+        window.editTab = function(id) {
+            const tab = window.dbData.tabs[id];
+            document.getElementById('editTabId').value = id;
+            document.getElementById('tabTitle').value = tab.title;
+            document.getElementById('tabDesc').value = tab.desc;
+
+            const select = document.getElementById('tabIcon');
+            const options = Array.from(select.options).map(o => o.value);
+            if (options.includes(tab.icon) && tab.icon !== 'manual') {
+                select.value = tab.icon;
+                document.getElementById('manualIconGroup').style.display = 'none';
+            } else {
+                select.value = 'manual';
+                document.getElementById('manualIconGroup').style.display = 'block';
+                document.getElementById('manualIconInput').value = tab.icon;
+            }
+
+            document.getElementById('tabPanelTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> সার্ভিস এডিট করুন';
+            document.getElementById('saveTabBtn').innerText = 'আপডেট করুন';
+            document.getElementById('cancelTabBtn').style.display = 'block';
+            document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.deleteTab = function(id) {
+            if (confirm('আপনি কি নিশ্চিত যে এই ট্যাবটি মুছে ফেলতে চান?')) {
+                remove(ref(db, `tabs/${id}`));
+            }
+        };
+
+        window.resetTabForm = function() {
+            document.getElementById('editTabId').value = '';
+            document.getElementById('tabTitle').value = '';
+            document.getElementById('tabDesc').value = '';
+            document.getElementById('manualIconInput').value = '';
+            document.getElementById('tabIcon').value = 'fa-laptop-code';
+            document.getElementById('manualIconGroup').style.display = 'none';
+            document.getElementById('tabPanelTitle').innerHTML = '<i class="fa-solid fa-plus-circle"></i> নতুন সার্ভিস/ট্যাব যুক্ত করুন';
+            document.getElementById('saveTabBtn').innerText = 'পাবলিশ করুন';
+            document.getElementById('cancelTabBtn').style.display = 'none';
+        };
+
+        // --- Database Actions (Notices) ---
+
+        window.saveNotice = function() {
+            const editId = document.getElementById('editNoticeId').value;
+            const title = document.getElementById('noticeTitle').value.trim();
+            const desc = document.getElementById('noticeDesc').value.trim();
+            const expiry = document.getElementById('noticeExpiry').value;
+
+            if (!title || !desc || !expiry) {
+                alert('দয়া করে নোটিশের সকল ফিল্ড পূরণ করুন।');
+                return;
+            }
+
+            const noticeData = { title: title, desc: desc, expiry: expiry };
+
+            if (editId) {
+                update(ref(db, `notices/${editId}`), noticeData);
+                alert('নোটিশ আপডেট হয়েছে!');
+            } else {
+                push(ref(db, 'notices'), noticeData);
+                alert('নোটিশ সফলভাবে ফায়ারবেসে পোস্ট হয়েছে!');
+            }
+
+            resetNoticeForm();
+        };
+
+        window.editNotice = function(id) {
+            const notice = window.dbData.notices[id];
+            document.getElementById('editNoticeId').value = id;
+            document.getElementById('noticeTitle').value = notice.title;
+            document.getElementById('noticeDesc').value = notice.desc;
+            document.getElementById('noticeExpiry').value = notice.expiry;
+
+            document.getElementById('noticePanelTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> নোটিশ এডিট করুন';
+            document.getElementById('saveNoticeBtn').innerText = 'আপডেট করুন';
+            document.getElementById('cancelNoticeBtn').style.display = 'block';
+            document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.deleteNotice = function(id) {
+            if (confirm('আপনি কি নিশ্চিত যে এই নোটিশটি মুছে ফেলতে চান?')) {
+                remove(ref(db, `notices/${id}`));
+            }
+        };
+
+        window.resetNoticeForm = function() {
+            document.getElementById('editNoticeId').value = '';
+            document.getElementById('noticeTitle').value = '';
+            document.getElementById('noticeDesc').value = '';
+            document.getElementById('noticeExpiry').value = '';
+            document.getElementById('noticePanelTitle').innerHTML = '<i class="fa-solid fa-bullhorn"></i> নতুন নোটিশ পাবলিশ করুন';
+            document.getElementById('saveNoticeBtn').innerText = 'নোটিশ পোস্ট করুন';
+            document.getElementById('cancelNoticeBtn').style.display = 'none';
+        };
+
+        // --- Auth & Modals Logic ---
+
+        window.toggleAuth = function() {
+            if (window.isLoggedIn) {
+                window.isLoggedIn = false;
+                const authBtn = document.getElementById('authBtn');
+                authBtn.innerText = 'Login';
+                authBtn.classList.remove('logout-btn');
+                document.getElementById('admin-panel').style.display = 'none';
+                resetTabForm();
+                resetNoticeForm();
+                renderTabs();
+                renderNotices();
+                alert('সফলভাবে লগআউট হয়েছে!');
+            } else {
+                openLoginModal();
+            }
+        };
+
+        window.openLoginModal = function() {
+            document.getElementById('loginModal').style.display = 'flex';
+        };
+
+        window.closeLoginModal = function() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+        };
+
+        window.openFeedbackModal = function() {
+            document.getElementById('feedbackModal').style.display = 'flex';
+        };
+
+        window.closeFeedbackModal = function() {
+            document.getElementById('feedbackModal').style.display = 'none';
+        };
+
+        window.handleLogin = function() {
+            const idInput = document.getElementById('username').value;
+            const passInput = document.getElementById('password').value;
+
+            if (idInput === 'sumoncomputer' && passInput === 'SC12345#') {
+                window.isLoggedIn = true;
+                closeLoginModal();
+                const authBtn = document.getElementById('authBtn');
+                authBtn.innerText = 'Logout';
+                authBtn.classList.add('logout-btn');
+                document.getElementById('admin-panel').style.display = 'block';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                renderTabs();
+                renderNotices();
+                renderAdminFeedbacks();
+                alert('সফলভাবে এডমিন লগইন হয়েছে!');
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        };
+
+        window.checkManualIconOption = function() {
+            const select = document.getElementById('tabIcon');
+            const manualGroup = document.getElementById('manualIconGroup');
+            manualGroup.style.display = select.value === 'manual' ? 'block' : 'none';
+        };
+
+        window.showDetails = function(id) {
+            const tab = window.dbData.tabs[id];
+            document.getElementById('detModalTitle').innerText = tab.title;
+            document.getElementById('detModalDesc').innerText = tab.desc;
+            document.getElementById('detailsModal').style.display = 'flex';
+        };
+
+        window.closeDetailsModal = function() {
+            document.getElementById('detailsModal').style.display = 'none';
+        };
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('loginModal')) closeLoginModal();
+            if (event.target == document.getElementById('detailsModal')) closeDetailsModal();
+            if (event.target == document.getElementById('feedbackModal')) closeFeedbackModal();
+        };
+    </script>
+</body>
+</html>
