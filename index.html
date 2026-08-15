@@ -722,7 +722,7 @@
                     <button class="btn-sm view-btn" style="padding:6px 12px;" onclick="openPaymentModal()"><i class="fa-solid fa-plus-circle"></i> ব্যালেন্স যোগ করুন</button>
                 </div>
 
-                <h4 style="font-size:15px; margin-bottom:10px; color:#fbbf24;"><i class="fa-solid fa-download"></i> আপনার ফাইলসমূহ (৫ মিনিট পর পর ডাউনলোড সম্ভব)</h4>
+                <h4 style="font-size:15px; margin-bottom:10px; color:#fbbf24;"><i class="fa-solid fa-download"></i> আপনার ফাইলসমূহ (একই ফাইল ৫ মিনিট পর পর ডাউনলোড সম্ভব)</h4>
                 <div id="custFilesList">
                     <p style="color:#9ca3af; font-size:13px;">কোন ফাইল পাওয়া যায়নি।</p>
                 </div>
@@ -1105,8 +1105,7 @@
                         name: name,
                         phone: phone,
                         balance: 0,
-                        files: {},
-                        lastDownloadTime: 0
+                        files: {}
                     });
                 } else {
                     update(custRef, { name: name });
@@ -1149,7 +1148,7 @@
                 card.innerHTML = `
                     <div>
                         <strong style="color:#38bdf8; font-size:14px;">${escapeHtml(file.fileName)}</strong>
-                        <p style="font-size:12px; color:#9ca3af;">টাইপ: ${file.payType} | মূল্য: ৳${file.amount}</p>
+                        <p style="font-size:12px; color:#9ca3af;">টাইপ: ${file.payType} | মূল্য: ৳${file.amount || 0}</p>
                     </div>
                     <button class="btn-sm view-btn" onclick="downloadCustomerFile('${window.currentCustomer.phone}', '${fId}')"><i class="fa-solid fa-download"></i> ডাউনলোড</button>
                 `;
@@ -1157,19 +1156,31 @@
             });
         };
 
+        // --- ফাইল ডাউনলোড, ব্যালেন্স কাটাকাটি এবং প্রতিটি ফাইলের আলাদা ৫ মিনিটের টাইমার চেক ---
         window.downloadCustomerFile = function(phone, fileId) {
             const cust = window.dbData.customers[phone];
-            const now = Date.now();
-            const lastTime = cust.lastDownloadTime || 0;
-            const cooldown = 5 * 60 * 1000;
+            const file = cust.files[fileId];
+            const currentBalance = cust.balance || 0;
+            const fileAmount = file.amount || 0;
 
-            if (now - lastTime < cooldown) {
-                const remainingSec = Math.ceil((cooldown - (now - lastTime)) / 1000);
-                alert(`নিরাপত্তাজনিত কারণে প্রতি ৫ মিনিট পর পর ফাইল ডাউনলোড করা যাবে। দয়া করে আরো ${Math.ceil(remainingSec/60)} মিনিট অপেক্ষা করুন।`);
+            // ১. ব্যালেন্স চেক (পর্যাপ্ত ব্যালেন্স না থাকলে ডাউনলোড ব্লক)
+            if (currentBalance < fileAmount) {
+                alert(`পর্যাপ্ত ব্যালেন্স নেই! এই ফাইলটি ডাউনলোড করতে ৳${fileAmount} প্রয়োজন। আপনার বর্তমান ব্যালেন্স: ৳${currentBalance}`);
                 return;
             }
 
-            const file = cust.files[fileId];
+            // ২. প্রতিটি ফাইলের জন্য আলাদা ৫ মিনিটের ডাউনলোড টাইম চেক
+            const now = Date.now();
+            const lastDownloadTime = file.lastDownloadTime || 0;
+            const cooldown = 5 * 60 * 1000; // ৫ মিনিট (মিলি সেকেন্ডে)
+
+            if (now - lastDownloadTime < cooldown) {
+                const remainingSec = Math.ceil((cooldown - (now - lastDownloadTime)) / 1000);
+                alert(`এই ফাইলটি পুনরায় ডাউনলোড করতে আরও ${Math.ceil(remainingSec / 60)} মিনিট অপেক্ষা করুন। (নিরাপত্তাজনিত কারণে ৫ মিনিট পর পর ফাইল ডাউনলোড করা যায়)`);
+                return;
+            }
+
+            // ৩. ফাইল ডাউনলোড প্রসেস
             if (file.url) {
                 window.open(file.url, '_blank');
             } else if (file.base64) {
@@ -1179,7 +1190,11 @@
                 a.click();
             }
 
-            update(ref(db, `customers/${phone}`), { lastDownloadTime: now });
+            // ৪. ডাউনলোডের পর ব্যালেন্স কর্তন এবং উক্ত ফাইলের ডাউনলোড টাইম আপডেট
+            const newBalance = currentBalance - fileAmount;
+            
+            update(ref(db, `customers/${phone}`), { balance: newBalance });
+            update(ref(db, `customers/${phone}/files/${fileId}`), { lastDownloadTime: now });
         };
 
         // --- Payment System ---
@@ -1268,7 +1283,7 @@
                 const f = files[fId];
                 html += `
                     <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:4px;">
-                        <span>${escapeHtml(f.fileName)} (৳${f.amount} - ${f.payType})</span>
+                        <span>${escapeHtml(f.fileName)} (৳${f.amount || 0} - ${f.payType})</span>
                         <div>
                             <button class="btn-sm edit-btn" style="display:inline-block; padding:2px 5px;" onclick="editCustomerFile('${phone}', '${fId}')">এডিট</button>
                             <button class="btn-sm delete-btn" style="display:inline-block; padding:2px 5px;" onclick="deleteCustomerFile('${phone}', '${fId}')">ডিলিট</button>
@@ -1317,7 +1332,7 @@
 
             if (!fileName) { alert('ফাইল নেম দিন'); return; }
 
-            const fileData = { fileName, payType, amount, date: new Date().toLocaleString('bn-BD') };
+            const fileData = { fileName, payType, amount, date: new Date().toLocaleString('bn-BD'), lastDownloadTime: 0 };
 
             if (method === 'link') {
                 const link = document.getElementById('linkFileInput').value.trim();
