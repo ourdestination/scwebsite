@@ -22,7 +22,6 @@
             min-height: 100vh;
         }
 
-        /* Twinkle Lighting Effect Background */
         .stars {
             position: fixed;
             top: 0;
@@ -48,7 +47,6 @@
             50% { opacity: 1; transform: scale(1.3); }
         }
 
-        /* Top Marquee Bar */
         .top-marquee {
             background: linear-gradient(90deg, #1f2937, #111827);
             color: #38bdf8;
@@ -59,7 +57,6 @@
             z-index: 10;
         }
 
-        /* Navbar */
         header {
             display: flex;
             justify-content: space-between;
@@ -95,6 +92,12 @@
             color: #9ca3af;
         }
 
+        .header-btns {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         .auth-btn {
             background: #2563eb;
             color: white;
@@ -120,7 +123,23 @@
             box-shadow: 0 0 10px rgba(220, 38, 38, 0.5) !important;
         }
 
-        /* Main Container */
+        .cust-header-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cust-header-btn:hover {
+            background: #059669;
+        }
+
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -129,7 +148,6 @@
             z-index: 10;
         }
 
-        /* Shop Info Card */
         .info-card {
             background: rgba(22, 27, 34, 0.7);
             border: 1px solid #30363d;
@@ -166,7 +184,6 @@
             font-weight: 500;
         }
 
-        /* Section Title */
         .section-title {
             font-size: 20px;
             margin-bottom: 15px;
@@ -175,7 +192,6 @@
             padding-left: 10px;
         }
 
-        /* Admin Panel Grid */
         #admin-panel {
             display: none;
             background: rgba(30, 41, 59, 0.9);
@@ -192,9 +208,7 @@
         }
 
         @media (max-width: 850px) {
-            .admin-grid {
-                grid-template-columns: 1fr;
-            }
+            .admin-grid { grid-template-columns: 1fr; }
         }
 
         .admin-box {
@@ -202,9 +216,9 @@
             padding: 15px;
             border-radius: 8px;
             border: 1px solid #334155;
+            margin-bottom: 15px;
         }
 
-        /* Layout Grid for Notice & Tabs */
         .main-layout {
             display: grid;
             grid-template-columns: 320px 1fr;
@@ -212,12 +226,9 @@
         }
 
         @media (max-width: 850px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
+            .main-layout { grid-template-columns: 1fr; }
         }
 
-        /* Notice Board Styling */
         .notice-board {
             background: rgba(22, 27, 34, 0.8);
             border: 1px solid #30363d;
@@ -238,6 +249,14 @@
             border-radius: 6px;
             padding: 12px;
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notice-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateX(3px);
+            border-color: #fbbf24;
         }
 
         .notice-title {
@@ -252,7 +271,7 @@
             color: #d1d5db;
             line-height: 1.5;
             margin-bottom: 8px;
-            white-space: pre-wrap; /* প্যারা প্যারা সুন্দরভাবে দেখানোর জন্য */
+            white-space: pre-wrap;
         }
 
         .notice-expiry {
@@ -263,7 +282,6 @@
             gap: 5px;
         }
 
-        /* Tabs Grid */
         .tabs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -279,6 +297,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: grab;
+        }
+
+        .tab-card.dragging {
+            opacity: 0.5;
+            border: 2px dashed #38bdf8;
         }
 
         .tab-card:hover {
@@ -294,15 +318,8 @@
             margin-bottom: 12px;
         }
 
-        .tab-header i {
-            font-size: 20px;
-            color: #38bdf8;
-        }
-
-        .tab-header h3 {
-            font-size: 18px;
-            color: #ffffff;
-        }
+        .tab-header i { font-size: 20px; color: #38bdf8; }
+        .tab-header h3 { font-size: 18px; color: #ffffff; }
 
         .tab-desc {
             color: #9ca3af;
@@ -332,41 +349,14 @@
             transition: 0.2s;
         }
 
-        .view-btn {
-            background: transparent;
-            color: #38bdf8;
-            border: 1px solid #38bdf8;
-        }
+        .view-btn { background: transparent; color: #38bdf8; border: 1px solid #38bdf8; }
+        .view-btn:hover { background: #38bdf8; color: #0d1117; }
+        .edit-btn { background: #eab308; color: #0d1117; font-weight: 600; display: none; }
+        .edit-btn:hover { background: #ca8a04; }
+        .delete-btn { background: #ef4444; color: white; font-weight: 600; display: none; }
+        .delete-btn:hover { background: #dc2626; }
 
-        .view-btn:hover {
-            background: #38bdf8;
-            color: #0d1117;
-        }
-
-        .edit-btn {
-            background: #eab308;
-            color: #0d1117;
-            font-weight: 600;
-            display: none;
-        }
-
-        .edit-btn:hover {
-            background: #ca8a04;
-        }
-
-        .delete-btn {
-            background: #ef4444;
-            color: white;
-            font-weight: 600;
-            display: none;
-        }
-
-        .delete-btn:hover {
-            background: #dc2626;
-        }
-
-        /* Review Section Styling inside Admin */
-        .feedback-list {
+        .feedback-list, .customer-list-admin {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -375,36 +365,13 @@
             margin-top: 10px;
         }
 
-        .feedback-card {
+        .feedback-card, .cust-admin-card {
             background: rgba(15, 23, 42, 0.8);
             border: 1px solid #334155;
             padding: 10px 12px;
             border-radius: 6px;
         }
 
-        .feedback-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: #38bdf8;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .feedback-text {
-            font-size: 13px;
-            color: #e2e8f0;
-            white-space: pre-wrap;
-            line-height: 1.4;
-        }
-
-        .feedback-time {
-            font-size: 10px;
-            color: #64748b;
-            margin-top: 4px;
-        }
-
-        /* Modal / Popup */
         .modal {
             display: none;
             position: fixed;
@@ -424,9 +391,11 @@
             border: 1px solid #30363d;
             border-radius: 10px;
             width: 90%;
-            max-width: 450px;
+            max-width: 500px;
             padding: 25px;
             position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .close-modal {
@@ -438,23 +407,9 @@
             cursor: pointer;
         }
 
-        .modal-title {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 13px;
-            color: #9ca3af;
-        }
-
+        .modal-title { font-size: 20px; margin-bottom: 20px; color: #fff; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 13px; color: #9ca3af; }
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 9px;
@@ -463,10 +418,6 @@
             border-radius: 6px;
             color: #fff;
             outline: none;
-        }
-
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            border-color: #2563eb;
         }
 
         .submit-btn {
@@ -481,28 +432,25 @@
             margin-top: 8px;
         }
 
-        .submit-btn:hover {
-            background: #1d4ed8;
-        }
+        .submit-btn:hover { background: #1d4ed8; }
 
-        /* Floating Action Buttons Container */
         .floating-container {
             position: fixed;
             bottom: 25px;
             right: 25px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 100;
         }
 
         .float-btn {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             color: #FFF;
             text-align: center;
-            font-size: 24px;
+            font-size: 22px;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
             display: flex;
             justify-content: center;
@@ -513,19 +461,10 @@
             border: none;
         }
 
-        .float-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-btn {
-            background-color: #25d366;
-            animation: pulse 2s infinite;
-        }
-
-        .feedback-btn {
-            background-color: #38bdf8;
-            color: #0d1117;
-        }
+        .float-btn:hover { transform: scale(1.1); }
+        .cust-btn { background-color: #10b981; }
+        .whatsapp-btn { background-color: #25d366; animation: pulse 2s infinite; }
+        .feedback-btn { background-color: #38bdf8; color: #0d1117; }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -533,28 +472,32 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
+        .file-item-card {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
+            header { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Stars -->
     <div class="stars" id="stars-container"></div>
 
-    <!-- Top Running Marquee -->
     <div class="top-marquee">
         <marquee scrollamount="4" behavior="scroll" direction="left">
             This Website Made by Hredoy Roy, Phone: +088 01518 411872; +880 1345 409887, Email: 100pc.net@gmail.com, Address: Krishnabila, Gangnalia-7610, Magura Sadar, Magura.
         </marquee>
     </div>
 
-    <!-- Header Navigation -->
     <header>
         <div class="logo-area">
             <i class="fa-solid fa-desktop logo-icon"></i>
@@ -563,12 +506,13 @@
                 <p>Hredoy Roy - Computer Operator</p>
             </div>
         </div>
-        <button class="auth-btn" id="authBtn" onclick="toggleAuth()">Login</button>
+        <div class="header-btns">
+            <button class="cust-header-btn" id="custPortalBtn" onclick="openCustomerModal()"><i class="fa-solid fa-user"></i> কাস্টমার পোর্টাল</button>
+            <button class="auth-btn" id="authBtn" onclick="toggleAuth()">Login</button>
+        </div>
     </header>
 
     <div class="container">
-
-        <!-- Shop Info Section -->
         <div class="info-card">
             <div class="info-item">
                 <i class="fa-solid fa-location-dot"></i>
@@ -596,7 +540,6 @@
         <!-- Admin Control Panel -->
         <div id="admin-panel">
             <div class="admin-grid">
-                <!-- Tab Form -->
                 <div class="admin-box">
                     <h4 style="color: #38bdf8; margin-bottom: 10px;" id="tabPanelTitle"><i class="fa-solid fa-plus-circle"></i> নতুন সার্ভিস/ট্যাব যুক্ত করুন</h4>
                     <form id="tabForm">
@@ -645,6 +588,10 @@
                             <textarea id="noticeDesc" rows="3" placeholder="নোটিশের বিবরণ..." required></textarea>
                         </div>
                         <div class="form-group">
+                            <label>নোটিশ লিংক (ঐচ্ছিক)</label>
+                            <input type="url" id="noticeLink" placeholder="https://example.com">
+                        </div>
+                        <div class="form-group">
                             <label>অটোমেটিক ডিলিট হওয়ার তারিখ (Expiry Date)</label>
                             <input type="date" id="noticeExpiry" required>
                         </div>
@@ -656,7 +603,40 @@
                 </div>
             </div>
 
-            <!-- Customer Feedbacks/Reviews Admin View -->
+            <!-- Payment Settings Update Panel -->
+            <div class="admin-box" style="margin-top: 20px;">
+                <h4 style="color: #a855f7; margin-bottom: 10px;"><i class="fa-solid fa-qrcode"></i> পেমেন্ট মেথড সেটিং আপডেট (বিকাশ ও বাংলা QR)</h4>
+                <div class="form-group">
+                    <label>বিকাশ সেন্ড মানি নম্বর</label>
+                    <input type="text" id="adminBkashNumber" placeholder="যেমন: 01518411872">
+                </div>
+                <!-- বাংলা QR ছবির জন্য ফাইল আপলোড অপশন -->
+                <div class="form-group">
+                    <label>বাংলা QR ইমেজ আপলোড করুন (Max 1MB)</label>
+                    <input type="file" id="adminQrImageFile" accept="image/*">
+                </div>
+                <button type="button" class="submit-btn" style="background:#a855f7;" onclick="savePaymentSettings()">সেটিং সংরক্ষণ করুন</button>
+            </div>
+
+            <!-- Customer Data & Payment Management -->
+            <div class="admin-box" style="margin-top: 20px;">
+                <h4 style="color: #10b981; margin-bottom: 10px;"><i class="fa-solid fa-users"></i> কাস্টমার ম্যানেজমেন্ট & ফাইল আপলোড</h4>
+                <div class="form-group">
+                    <input type="text" id="adminCustSearch" onkeyup="filterAdminCustomers()" placeholder="কাস্টমার সার্চ করুন (নাম বা ফোন নম্বর)...">
+                </div>
+                <div class="customer-list-admin" id="adminCustomerList">
+                    <p style="color:#9ca3af; font-size:13px;">কাস্টমার লোড হচ্ছে...</p>
+                </div>
+            </div>
+
+            <!-- Pending Payments Admin Verification -->
+            <div class="admin-box" style="margin-top: 20px;">
+                <h4 style="color: #f59e0b; margin-bottom: 10px;"><i class="fa-solid fa-wallet"></i> পেমেন্ট ভেরিফিকেশন</h4>
+                <div id="adminPaymentList">
+                    <p style="color:#9ca3af; font-size:13px;">পেমেন্ট রিকোয়েস্ট লোড হচ্ছে...</p>
+                </div>
+            </div>
+
             <div class="admin-box" style="margin-top: 20px;">
                 <h4 style="color: #38bdf8; margin-bottom: 10px;"><i class="fa-solid fa-comments"></i> কাস্টমারদের মতামত / রিভিউ</h4>
                 <div class="feedback-list" id="adminFeedbackContainer">
@@ -665,10 +645,7 @@
             </div>
         </div>
 
-        <!-- Main Content Layout (Left Notice, Right Tabs) -->
         <div class="main-layout">
-            
-            <!-- Left Side: Notice Board -->
             <aside class="notice-board">
                 <h2 class="section-title" style="border-color: #f59e0b;"><i class="fa-solid fa-bell"></i> নোটিশ বোর্ড</h2>
                 <div class="notice-list" id="noticeContainer">
@@ -676,25 +653,23 @@
                 </div>
             </aside>
 
-            <!-- Right Side: Services / Tabs -->
             <main>
-                <h2 class="section-title"><i class="fa-solid fa-list-check"></i> আমাদের সেবাসমূহ</h2>
+                <h2 class="section-title"><i class="fa-solid fa-list-check"></i> আমাদের সেবাসমূহ (ড্র্যাগ করে পজিশন চেঞ্জ করুন)</h2>
                 <div class="tabs-grid" id="tabsContainer">
                     <p style="color:#9ca3af; font-size:14px;">সেবাসমূহ লোড হচ্ছে...</p>
                 </div>
             </main>
-
         </div>
-
     </div>
 
     <!-- Floating Buttons Container -->
     <div class="floating-container">
-        <!-- Customer Feedback Button -->
+        <button class="float-btn cust-btn" onclick="openCustomerModal()" title="কাস্টমার পোর্টাল">
+            <i class="fa-solid fa-user-gear"></i>
+        </button>
         <button class="float-btn feedback-btn" onclick="openFeedbackModal()" title="আপনার মতামত দিন">
             <i class="fa-solid fa-comment-dots"></i>
         </button>
-        <!-- Floating WhatsApp -->
         <a href="https://wa.me/8801518411872" class="float-btn whatsapp-btn" target="_blank" title="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
@@ -715,6 +690,129 @@
             </div>
             <p id="loginError" style="color: #ef4444; font-size: 13px; display: none; margin-bottom: 10px;">ভুল ID অথবা Password!</p>
             <button class="submit-btn" onclick="handleLogin()">লগইন করুন</button>
+        </div>
+    </div>
+
+    <!-- Customer Modal (Login & Dashboard) -->
+    <div class="modal" id="customerModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCustomerModal()">&times;</span>
+            <div id="custLoginSection">
+                <h3 class="modal-title"><i class="fa-solid fa-user-check"></i> কাস্টমার লগইন</h3>
+                <div class="form-group">
+                    <label>আপনার নাম *</label>
+                    <input type="text" id="custNameInput" placeholder="যেমন: মো: রহিম">
+                </div>
+                <div class="form-group">
+                    <label>মোবাইল নম্বর *</label>
+                    <input type="text" id="custPhoneInput" placeholder="017xxxxxxxx">
+                </div>
+                <button class="submit-btn" style="background:#10b981;" onclick="handleCustomerLogin()">লগইন / প্রবেশ করুন</button>
+            </div>
+
+            <div id="custDashboardSection" style="display:none;">
+                <h3 class="modal-title" style="color:#10b981;"><i class="fa-solid fa-circle-user"></i> কাস্টমার প্রোফাইল</h3>
+                <p style="font-size:14px; margin-bottom: 5px;">স্বাগতম, <strong id="custDisplayName"></strong></p>
+                
+                <div style="background:#0d1117; padding:12px; border-radius:8px; border:1px solid #30363d; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <span style="font-size:13px; color:#9ca3af;">বর্তমান ব্যালেন্স:</span>
+                        <h4 style="color:#38bdf8; font-size:18px;">৳ <span id="custBalance">0</span></h4>
+                    </div>
+                    <button class="btn-sm view-btn" style="padding:6px 12px;" onclick="openPaymentModal()"><i class="fa-solid fa-plus-circle"></i> ব্যালেন্স যোগ করুন</button>
+                </div>
+
+                <h4 style="font-size:15px; margin-bottom:10px; color:#fbbf24;"><i class="fa-solid fa-download"></i> আপনার ফাইলসমূহ (৫ মিনিট পর পর ডাউনলোড সম্ভব)</h4>
+                <div id="custFilesList">
+                    <p style="color:#9ca3af; font-size:13px;">কোন ফাইল পাওয়া যায়নি।</p>
+                </div>
+                
+                <button class="submit-btn" style="background:#dc2626; margin-top:15px;" onclick="handleCustomerLogout()">লগআউট</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Upload Data to Customer Modal -->
+    <div class="modal" id="adminUploadModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAdminUploadModal()">&times;</span>
+            <h3 class="modal-title"><i class="fa-solid fa-cloud-upload-alt"></i> ডেটা/ফাইল আপলোড করুন</h3>
+            <input type="hidden" id="targetCustPhone">
+            
+            <div class="form-group">
+                <label>ফাইল নেম *</label>
+                <input type="text" id="uploadFileName" placeholder="যেমন: ভোটার আইডি কার্ড স্ক্যান">
+            </div>
+            <div class="form-group">
+                <label>পেমেন্ট টাইপ *</label>
+                <select id="uploadPayType">
+                    <option value="Prepaid">Prepaid (প্রিপেইড)</option>
+                    <option value="Postpaid">Postpaid (পোস্টপেইড)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>পেমেন্ট এর পরিমাণ (টাকা) *</label>
+                <input type="number" id="uploadPayAmount" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>ফাইল আপলোড টাইপ</label>
+                <select id="uploadMethod" onchange="toggleUploadMethod()">
+                    <option value="direct">সরাসরি ডাইরেক্ট ফাইল (সর্বোচ্চ 1MB - Base64)</option>
+                    <option value="link">ফাইল লিংক (বড় সাইজের ফাইলের জন্য)</option>
+                </select>
+            </div>
+            <div class="form-group" id="directFileGroup">
+                <label>ফাইল সিলেক্ট করুন (Max 1MB)</label>
+                <input type="file" id="directFileInput">
+            </div>
+            <div class="form-group" id="linkFileGroup" style="display:none;">
+                <label>ডাউনলোড/ফাইল ড্রাইভ লিংক</label>
+                <input type="url" id="linkFileInput" placeholder="https://drive.google.com/...">
+            </div>
+
+            <button class="submit-btn" style="background:#10b981;" onclick="processAdminUpload()">আপলোড নিশ্চিত করুন</button>
+        </div>
+    </div>
+
+    <!-- Customer Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+            <h3 class="modal-title"><i class="fa-solid fa-wallet"></i> ব্যালেন্স রিচার্জ / পেমেন্ট</h3>
+            
+            <div style="background:#0d1117; padding:12px; border-radius:8px; border:1px solid #30363d; margin-bottom:15px; text-align:center;">
+                <p style="font-size:13px; color:#fbbf24; margin-bottom:5px;">বিকাশ সেন্ড মানি (পার্সোনাল): <strong id="displayBkashNumber">01518411872</strong></p>
+                <p style="font-size:12px; color:#9ca3af;">অথবা নিচে বাংলা QR কোড ব্যবহার করুন</p>
+                <div style="margin:10px 0; background:#fff; padding:10px; display:inline-block; border-radius:6px;">
+                    <img id="displayQrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=bKash-01518411872" alt="Bangla QR" width="130">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>পেমেন্ট মেথড *</label>
+                <select id="payMethod">
+                    <option value="bKash">bKash (বিকাশ)</option>
+                    <option value="BanglaQR">বাংলা QR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>টাকার পরিমাণ *</label>
+                <input type="number" id="payAmountInput" placeholder="যেমন: 500">
+            </div>
+            <div class="form-group">
+                <label>ট্রান্সজেকশন আইডি (TrxID) *</label>
+                <input type="text" id="payTrxIdInput" placeholder="যেমন: 9J7A6X...">
+            </div>
+            <div class="form-group">
+                <label>বিকাশ নম্বর (বিকাশ দিয়ে থাকলে)</label>
+                <input type="text" id="paySenderPhone" placeholder="017xxxxxxxx">
+            </div>
+
+            <button class="submit-btn" style="background:#10b981;" onclick="submitPaymentVerify()">পেমেন্ট ভেরিফাই রিকোয়েস্ট পাঠান</button>
+            
+            <a href="https://wa.me/8801518411872?text=Hello%20Admin,%20I%20have%20sent%20a%20payment." target="_blank" class="submit-btn" style="background:#25d366; text-decoration:none; text-align:center; display:block; margin-top:10px;">
+                <i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপে সরাসরি কথা বলুন
+            </a>
         </div>
     </div>
 
@@ -745,15 +843,15 @@
             <span class="close-modal" onclick="closeDetailsModal()">&times;</span>
             <h3 class="modal-title" id="detModalTitle" style="color:#38bdf8;"></h3>
             <p id="detModalDesc" style="color:#d1d5db; line-height: 1.6; font-size: 15px; margin-top: 10px; white-space: pre-wrap;"></p>
+            <div id="detModalLinkArea" style="margin-top:15px;"></div>
         </div>
     </div>
 
     <!-- Firebase Modular SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
+        import { getDatabase, ref, push, onValue, remove, update, set } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
 
-        // Your Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDURocP9xRxTikMZxtBxsmKsE5YuKZFCXM",
             authDomain: "scwebsite-c25bb.firebaseapp.com",
@@ -765,15 +863,14 @@
             measurementId: "G-25BL6QPCT1"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Global state
         window.isLoggedIn = false;
-        window.dbData = { tabs: {}, notices: {}, feedbacks: {} };
+        window.currentCustomer = null;
+        window.dbData = { tabs: {}, notices: {}, feedbacks: {}, customers: {}, payments: {}, settings: {} };
 
-        // Background Stars Animation
+        // Stars
         const starsContainer = document.getElementById('stars-container');
         for (let i = 0; i < 60; i++) {
             const star = document.createElement('div');
@@ -785,56 +882,113 @@
         }
 
         // --- Realtime Database Listeners ---
-
-        // Listen for Tabs Data
-        const tabsRef = ref(db, 'tabs');
-        onValue(tabsRef, (snapshot) => {
-            const data = snapshot.val() || {};
-            window.dbData.tabs = data;
+        onValue(ref(db, 'tabs'), (snapshot) => {
+            window.dbData.tabs = snapshot.val() || {};
             renderTabs();
         });
 
-        // Listen for Notices Data & Auto-Delete Expired Notices
-        const noticesRef = ref(db, 'notices');
-        onValue(noticesRef, (snapshot) => {
+        onValue(ref(db, 'notices'), (snapshot) => {
             const data = snapshot.val() || {};
             const today = new Date().toISOString().split('T')[0];
-
             Object.keys(data).forEach(key => {
                 if (data[key].expiry && data[key].expiry < today) {
                     remove(ref(db, `notices/${key}`));
                     delete data[key];
                 }
             });
-
             window.dbData.notices = data;
             renderNotices();
         });
 
-        // Listen for Feedbacks Data
-        const fbRef = ref(db, 'feedbacks');
-        onValue(fbRef, (snapshot) => {
-            const data = snapshot.val() || {};
-            window.dbData.feedbacks = data;
+        onValue(ref(db, 'feedbacks'), (snapshot) => {
+            window.dbData.feedbacks = snapshot.val() || {};
             renderAdminFeedbacks();
         });
 
-        // --- Render Functions ---
+        onValue(ref(db, 'customers'), (snapshot) => {
+            window.dbData.customers = snapshot.val() || {};
+            renderAdminCustomers();
+            if (window.currentCustomer && window.dbData.customers[window.currentCustomer.phone]) {
+                window.currentCustomer = window.dbData.customers[window.currentCustomer.phone];
+                renderCustomerDashboard();
+            }
+        });
 
+        onValue(ref(db, 'payments'), (snapshot) => {
+            window.dbData.payments = snapshot.val() || {};
+            renderAdminPayments();
+        });
+
+        // Settings Listener (bKash & QR)
+        onValue(ref(db, 'settings'), (snapshot) => {
+            const settings = snapshot.val() || {};
+            window.dbData.settings = settings;
+
+            const bkashNum = settings.bkashNumber || '01518411872';
+            const qrUrl = settings.qrImageUrl || `https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=bKash-${bkashNum}`;
+
+            const displayBkash = document.getElementById('displayBkashNumber');
+            const displayQr = document.getElementById('displayQrCode');
+            const adminBkash = document.getElementById('adminBkashNumber');
+
+            if (displayBkash) displayBkash.innerText = bkashNum;
+            if (displayQr) displayQr.src = qrUrl;
+            if (adminBkash) adminBkash.value = bkashNum;
+        });
+
+        // --- Save Payment Settings (QR Image Direct File Upload) ---
+        window.savePaymentSettings = function() {
+            const bkashNumber = document.getElementById('adminBkashNumber').value.trim();
+            const qrFileInput = document.getElementById('adminQrImageFile');
+
+            if (!bkashNumber) {
+                alert('দয়া করে বিকাশ নম্বর পূরণ করুন।');
+                return;
+            }
+
+            const updateData = { bkashNumber: bkashNumber };
+
+            if (qrFileInput.files && qrFileInput.files[0]) {
+                const file = qrFileInput.files[0];
+                if (file.size > 1024 * 1024) {
+                    alert('QR কোড ইমেজের সাইজ সর্বোচ্চ ১ মেগাবাইট (1MB) হতে পারবে।');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    updateData.qrImageUrl = e.target.result;
+                    update(ref(db, 'settings'), updateData).then(() => {
+                        alert('পেমেন্ট সেটিং ও QR কোড ইমেজ সফলভাবে আপলোড করা হয়েছে!');
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+                update(ref(db, 'settings'), updateData).then(() => {
+                    alert('বিকাশ নম্বর আপডেট সম্পন্ন হয়েছে!');
+                });
+            }
+        };
+
+        // --- Drag & Drop Reordering ---
         window.renderTabs = function() {
             const tabsContainer = document.getElementById('tabsContainer');
             tabsContainer.innerHTML = '';
 
-            const keys = Object.keys(window.dbData.tabs);
-            if (keys.length === 0) {
+            let tabEntries = Object.entries(window.dbData.tabs);
+            tabEntries.sort((a, b) => (a[1].order || 0) - (b[1].order || 0));
+
+            if (tabEntries.length === 0) {
                 tabsContainer.innerHTML = '<p style="color:#9ca3af; font-size:14px;">কোন সেবাসমূহ পাওয়া যায়নি।</p>';
                 return;
             }
 
-            keys.reverse().forEach(key => {
-                const tab = window.dbData.tabs[key];
+            tabEntries.forEach(([key, tab]) => {
                 const card = document.createElement('div');
                 card.className = 'tab-card';
+                card.draggable = true;
+                card.dataset.id = key;
+
                 card.innerHTML = `
                     <div>
                         <div class="tab-header">
@@ -849,10 +1003,40 @@
                         <button class="btn-sm delete-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="deleteTab('${key}')"><i class="fa-solid fa-trash"></i> ডিলিট</button>
                     </div>
                 `;
+
+                card.addEventListener('dragstart', () => card.classList.add('dragging'));
+                card.addEventListener('dragend', () => {
+                    card.classList.remove('dragging');
+                    saveTabsOrder();
+                });
+
                 tabsContainer.appendChild(card);
             });
         };
 
+        const tabsContainer = document.getElementById('tabsContainer');
+        tabsContainer.addEventListener('dragover', e => {
+            e.preventDefault();
+            const draggingItem = document.querySelector('.dragging');
+            if(!draggingItem) return;
+            const siblings = [...tabsContainer.querySelectorAll('.tab-card:not(.dragging)')];
+            let nextSibling = siblings.find(sibling => {
+                return e.clientY <= sibling.getBoundingClientRect().top + sibling.offsetHeight / 2;
+            });
+            tabsContainer.insertBefore(draggingItem, nextSibling);
+        });
+
+        function saveTabsOrder() {
+            const cards = [...document.querySelectorAll('.tab-card')];
+            cards.forEach((card, index) => {
+                const key = card.dataset.id;
+                if(window.dbData.tabs[key]) {
+                    update(ref(db, `tabs/${key}`), { order: index });
+                }
+            });
+        }
+
+        // --- Render Notices with Links ---
         window.renderNotices = function() {
             const noticeContainer = document.getElementById('noticeContainer');
             noticeContainer.innerHTML = '';
@@ -867,11 +1051,19 @@
                 const notice = window.dbData.notices[key];
                 const card = document.createElement('div');
                 card.className = 'notice-card';
+                card.onclick = (e) => {
+                    if (!e.target.closest('.card-actions')) showNoticeDetails(key);
+                };
+                
+                let linkHTML = notice.link ? `<div style="margin-top:5px;"><a href="${escapeHtml(notice.link)}" target="_blank" style="color:#38bdf8; font-size:12px;"><i class="fa-solid fa-link"></i> নোটিশ লিংক</a></div>` : '';
+
                 card.innerHTML = `
                     <div class="notice-title">${escapeHtml(notice.title)}</div>
                     <div class="notice-desc">${escapeHtml(notice.desc)}</div>
-                    <div class="notice-expiry"><i class="fa-regular fa-clock"></i> মেয়াদ: ${notice.expiry}</div>
+                    ${linkHTML}
+                    <div class="notice-expiry" style="margin-top:6px;"><i class="fa-regular fa-clock"></i> মেয়াদ: ${notice.expiry}</div>
                     <div class="card-actions" style="margin-top: 8px;">
+                        <button class="btn-sm view-btn" onclick="showNoticeDetails('${key}')">বিস্তারিত দেখুন</button>
                         <button class="btn-sm edit-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="editNotice('${key}')"><i class="fa-solid fa-pen"></i> এডিট</button>
                         <button class="btn-sm delete-btn" style="display: ${window.isLoggedIn ? 'inline-block' : 'none'};" onclick="deleteNotice('${key}')"><i class="fa-solid fa-trash"></i> ডিলিট</button>
                     </div>
@@ -880,72 +1072,344 @@
             });
         };
 
-        window.renderAdminFeedbacks = function() {
-            const container = document.getElementById('adminFeedbackContainer');
-            container.innerHTML = '';
+        // --- Customer Operations ---
+        window.openCustomerModal = function() {
+            document.getElementById('customerModal').style.display = 'flex';
+            if (window.currentCustomer) {
+                document.getElementById('custLoginSection').style.display = 'none';
+                document.getElementById('custDashboardSection').style.display = 'block';
+                renderCustomerDashboard();
+            } else {
+                document.getElementById('custLoginSection').style.display = 'block';
+                document.getElementById('custDashboardSection').style.display = 'none';
+            }
+        };
 
-            const keys = Object.keys(window.dbData.feedbacks);
-            if (keys.length === 0) {
-                container.innerHTML = '<p style="color:#9ca3af; font-size:13px;">এখনো কোনো মতামত জমা হয়নি।</p>';
+        window.closeCustomerModal = function() {
+            document.getElementById('customerModal').style.display = 'none';
+        };
+
+        window.handleCustomerLogin = function() {
+            const name = document.getElementById('custNameInput').value.trim();
+            const phone = document.getElementById('custPhoneInput').value.trim();
+
+            if (!name || !phone) {
+                alert('দয়া করে নাম এবং ফোন নম্বর লিখুন।');
                 return;
             }
 
-            keys.reverse().forEach(key => {
-                const fb = window.dbData.feedbacks[key];
+            const custRef = ref(db, `customers/${phone}`);
+            onValue(custRef, (snapshot) => {
+                if (!snapshot.exists()) {
+                    set(custRef, {
+                        name: name,
+                        phone: phone,
+                        balance: 0,
+                        files: {},
+                        lastDownloadTime: 0
+                    });
+                } else {
+                    update(custRef, { name: name });
+                }
+            }, { onlyOnce: true });
+
+            window.currentCustomer = { name, phone, balance: 0, files: {} };
+            document.getElementById('custLoginSection').style.display = 'none';
+            document.getElementById('custDashboardSection').style.display = 'block';
+            renderCustomerDashboard();
+        };
+
+        window.handleCustomerLogout = function() {
+            window.currentCustomer = null;
+            document.getElementById('custLoginSection').style.display = 'block';
+            document.getElementById('custDashboardSection').style.display = 'none';
+        };
+
+        window.renderCustomerDashboard = function() {
+            if (!window.currentCustomer) return;
+            const cust = window.dbData.customers[window.currentCustomer.phone] || window.currentCustomer;
+            document.getElementById('custDisplayName').innerText = `${cust.name} (${cust.phone})`;
+            document.getElementById('custBalance').innerText = cust.balance || 0;
+
+            const filesContainer = document.getElementById('custFilesList');
+            filesContainer.innerHTML = '';
+
+            const files = cust.files || {};
+            const keys = Object.keys(files);
+
+            if (keys.length === 0) {
+                filesContainer.innerHTML = '<p style="color:#9ca3af; font-size:13px;">কোন ফাইল বা ডেটা আপলোড করা হয়নি।</p>';
+                return;
+            }
+
+            keys.reverse().forEach(fId => {
+                const file = files[fId];
                 const card = document.createElement('div');
-                card.className = 'feedback-card';
+                card.className = 'file-item-card';
                 card.innerHTML = `
-                    <div class="feedback-header">
-                        <span><i class="fa-solid fa-user"></i> ${escapeHtml(fb.name)} ${fb.phone ? '(' + escapeHtml(fb.phone) + ')' : ''}</span>
-                        <button class="btn-sm delete-btn" style="display: inline-block;" onclick="deleteFeedback('${key}')"><i class="fa-solid fa-trash"></i></button>
+                    <div>
+                        <strong style="color:#38bdf8; font-size:14px;">${escapeHtml(file.fileName)}</strong>
+                        <p style="font-size:12px; color:#9ca3af;">টাইপ: ${file.payType} | মূল্য: ৳${file.amount}</p>
                     </div>
-                    <div class="feedback-text">${escapeHtml(fb.comment)}</div>
-                    <div class="feedback-time"><i class="fa-regular fa-clock"></i> ${fb.date || ''}</div>
+                    <button class="btn-sm view-btn" onclick="downloadCustomerFile('${window.currentCustomer.phone}', '${fId}')"><i class="fa-solid fa-download"></i> ডাউনলোড</button>
+                `;
+                filesContainer.appendChild(card);
+            });
+        };
+
+        window.downloadCustomerFile = function(phone, fileId) {
+            const cust = window.dbData.customers[phone];
+            const now = Date.now();
+            const lastTime = cust.lastDownloadTime || 0;
+            const cooldown = 5 * 60 * 1000;
+
+            if (now - lastTime < cooldown) {
+                const remainingSec = Math.ceil((cooldown - (now - lastTime)) / 1000);
+                alert(`নিরাপত্তাজনিত কারণে প্রতি ৫ মিনিট পর পর ফাইল ডাউনলোড করা যাবে। দয়া করে আরো ${Math.ceil(remainingSec/60)} মিনিট অপেক্ষা করুন।`);
+                return;
+            }
+
+            const file = cust.files[fileId];
+            if (file.url) {
+                window.open(file.url, '_blank');
+            } else if (file.base64) {
+                const a = document.createElement('a');
+                a.href = file.base64;
+                a.download = file.fileName;
+                a.click();
+            }
+
+            update(ref(db, `customers/${phone}`), { lastDownloadTime: now });
+        };
+
+        // --- Payment System ---
+        window.openPaymentModal = function() {
+            document.getElementById('paymentModal').style.display = 'flex';
+        };
+
+        window.closePaymentModal = function() {
+            document.getElementById('paymentModal').style.display = 'none';
+        };
+
+        window.submitPaymentVerify = function() {
+            if (!window.currentCustomer) return;
+            const method = document.getElementById('payMethod').value;
+            const amount = parseFloat(document.getElementById('payAmountInput').value);
+            const trxId = document.getElementById('payTrxIdInput').value.trim();
+            const senderPhone = document.getElementById('paySenderPhone').value.trim();
+
+            if (!amount || !trxId) {
+                alert('দয়া করে টাকার পরিমাণ এবং ট্রান্সজেকশন আইডি দিন।');
+                return;
+            }
+
+            const payData = {
+                custPhone: window.currentCustomer.phone,
+                custName: window.currentCustomer.name,
+                method: method,
+                amount: amount,
+                trxId: trxId,
+                senderPhone: senderPhone,
+                status: 'Pending',
+                date: new Date().toLocaleString('bn-BD')
+            };
+
+            push(ref(db, 'payments'), payData).then(() => {
+                alert('আপনার পেমেন্ট ভেরিফিকেশন রিকোয়েস্ট এডমিনের কাছে পাঠানো হয়েছে!');
+                closePaymentModal();
+            });
+        };
+
+        // --- Admin Customer & Data Upload Management ---
+        window.renderAdminCustomers = function() {
+            const container = document.getElementById('adminCustomerList');
+            container.innerHTML = '';
+            const customers = window.dbData.customers;
+            const keys = Object.keys(customers);
+
+            if (keys.length === 0) {
+                container.innerHTML = '<p style="color:#9ca3af; font-size:13px;">কোন কাস্টমার নিবন্ধিত নেই।</p>';
+                return;
+            }
+
+            keys.forEach(phone => {
+                const cust = customers[phone];
+                const card = document.createElement('div');
+                card.className = 'cust-admin-card';
+                card.dataset.name = cust.name.toLowerCase();
+                card.dataset.phone = cust.phone;
+
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="color:#38bdf8;">${escapeHtml(cust.name)}</strong> (${escapeHtml(cust.phone)})
+                            <p style="font-size:12px; color:#9ca3af;">ব্যালেন্স: ৳${cust.balance || 0}</p>
+                        </div>
+                        <div style="display:flex; gap:5px;">
+                            <button class="btn-sm view-btn" onclick="openAdminUploadModal('${cust.phone}')"><i class="fa-solid fa-upload"></i> ফাইল আপলোড</button>
+                            <button class="btn-sm delete-btn" style="display:inline-block;" onclick="deleteCustomerProfile('${cust.phone}')"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div style="margin-top:8px; border-top:1px solid #334155; padding-top:6px;">
+                        <small style="color:#fbbf24;">আপলোড করা ফাইলসমূহ:</small>
+                        <div id="custFilesAdmin_${cust.phone}">
+                            ${renderAdminCustomerFiles(cust.phone, cust.files)}
+                        </div>
+                    </div>
                 `;
                 container.appendChild(card);
             });
         };
 
-        // --- Database Actions (Feedback) ---
+        function renderAdminCustomerFiles(phone, files) {
+            if (!files) return '<p style="font-size:11px; color:#64748b;">কোন ফাইল নেই</p>';
+            let html = '';
+            Object.keys(files).forEach(fId => {
+                const f = files[fId];
+                html += `
+                    <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:4px;">
+                        <span>${escapeHtml(f.fileName)} (৳${f.amount} - ${f.payType})</span>
+                        <div>
+                            <button class="btn-sm edit-btn" style="display:inline-block; padding:2px 5px;" onclick="editCustomerFile('${phone}', '${fId}')">এডিট</button>
+                            <button class="btn-sm delete-btn" style="display:inline-block; padding:2px 5px;" onclick="deleteCustomerFile('${phone}', '${fId}')">ডিলিট</button>
+                        </div>
+                    </div>
+                `;
+            });
+            return html;
+        }
 
-        window.submitFeedback = function() {
-            const name = document.getElementById('fbName').value.trim();
-            const phone = document.getElementById('fbPhone').value.trim();
-            const comment = document.getElementById('fbComment').value.trim();
+        window.filterAdminCustomers = function() {
+            const query = document.getElementById('adminCustSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.cust-admin-card');
+            cards.forEach(card => {
+                const name = card.dataset.name;
+                const phone = card.dataset.phone;
+                if (name.includes(query) || phone.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        };
 
-            if (!name || !comment) {
-                alert('দয়া করে নাম এবং মতামতের ঘরটি পূরণ করুন।');
+        window.openAdminUploadModal = function(phone) {
+            document.getElementById('targetCustPhone').value = phone;
+            document.getElementById('adminUploadModal').style.display = 'flex';
+        };
+
+        window.closeAdminUploadModal = function() {
+            document.getElementById('adminUploadModal').style.display = 'none';
+        };
+
+        window.toggleUploadMethod = function() {
+            const method = document.getElementById('uploadMethod').value;
+            document.getElementById('directFileGroup').style.display = method === 'direct' ? 'block' : 'none';
+            document.getElementById('linkFileGroup').style.display = method === 'link' ? 'block' : 'none';
+        };
+
+        window.processAdminUpload = function() {
+            const phone = document.getElementById('targetCustPhone').value;
+            const fileName = document.getElementById('uploadFileName').value.trim();
+            const payType = document.getElementById('uploadPayType').value;
+            const amount = parseFloat(document.getElementById('uploadPayAmount').value) || 0;
+            const method = document.getElementById('uploadMethod').value;
+
+            if (!fileName) { alert('ফাইল নেম দিন'); return; }
+
+            const fileData = { fileName, payType, amount, date: new Date().toLocaleString('bn-BD') };
+
+            if (method === 'link') {
+                const link = document.getElementById('linkFileInput').value.trim();
+                if (!link) { alert('লিংক দিন'); return; }
+                fileData.url = link;
+                saveFileDataToCust(phone, fileData);
+            } else {
+                const fileInput = document.getElementById('directFileInput');
+                if (!fileInput.files[0]) { alert('ফাইল সিলেক্ট করুন'); return; }
+                const file = fileInput.files[0];
+                if (file.size > 1024 * 1024) { alert('ফাইল সাইজ ১ মেগাবাইটের বেশি! লিংক অপশন ব্যবহার করুন।'); return; }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    fileData.base64 = e.target.result;
+                    saveFileDataToCust(phone, fileData);
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        function saveFileDataToCust(phone, fileData) {
+            push(ref(db, `customers/${phone}/files`), fileData).then(() => {
+                alert('ডেটা/ফাইল সফলভাবে আপলোড হয়েছে!');
+                closeAdminUploadModal();
+            });
+        }
+
+        window.deleteCustomerFile = function(phone, fId) {
+            if (confirm('ফাইলটি ডিলিট করতে চান?')) {
+                remove(ref(db, `customers/${phone}/files/${fId}`));
+            }
+        };
+
+        window.editCustomerFile = function(phone, fId) {
+            const newName = prompt('নতুন ফাইল নেম দিন:');
+            if (newName) {
+                update(ref(db, `customers/${phone}/files/${fId}`), { fileName: newName });
+            }
+        };
+
+        window.deleteCustomerProfile = function(phone) {
+            if (confirm('সম্পূর্ণ কাস্টমার প্রোফাইল ডিলিট করতে চান?')) {
+                remove(ref(db, `customers/${phone}`));
+            }
+        };
+
+        // --- Admin Payment Verification ---
+        window.renderAdminPayments = function() {
+            const container = document.getElementById('adminPaymentList');
+            container.innerHTML = '';
+            const payments = window.dbData.payments;
+            const keys = Object.keys(payments);
+
+            if (keys.length === 0) {
+                container.innerHTML = '<p style="color:#9ca3af; font-size:13px;">কোন পেমেন্ট আবেদন নেই।</p>';
                 return;
             }
 
-            const feedbackData = {
-                name: name,
-                phone: phone,
-                comment: comment,
-                date: new Date().toLocaleString('bn-BD')
-            };
-
-            push(ref(db, 'feedbacks'), feedbackData)
-                .then(() => {
-                    alert('আপনার মতামতের জন্য ধন্যবাদ!');
-                    closeFeedbackModal();
-                    document.getElementById('fbName').value = '';
-                    document.getElementById('fbPhone').value = '';
-                    document.getElementById('fbComment').value = '';
-                })
-                .catch(() => {
-                    alert('মতামত পাঠাতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।');
-                });
+            keys.reverse().forEach(pId => {
+                const p = payments[pId];
+                if (p.status === 'Pending') {
+                    const card = document.createElement('div');
+                    card.className = 'feedback-card';
+                    card.innerHTML = `
+                        <div class="feedback-header">
+                            <span>${escapeHtml(p.custName)} (${escapeHtml(p.custPhone)})</span>
+                            <span style="color:#fbbf24;">৳${p.amount}</span>
+                        </div>
+                        <p style="font-size:12px; color:#d1d5db;">মেথড: ${p.method} | TrxID: ${escapeHtml(p.trxId)} | বিকাশ নং: ${escapeHtml(p.senderPhone || 'N/A')}</p>
+                        <div style="margin-top:8px; display:flex; gap:8px;">
+                            <button class="btn-sm edit-btn" style="display:inline-block;" onclick="approvePayment('${pId}', '${p.custPhone}', ${p.amount})">অনুমোদন (Approve)</button>
+                            <button class="btn-sm delete-btn" style="display:inline-block;" onclick="rejectPayment('${pId}')">বাতিল</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                }
+            });
         };
 
-        window.deleteFeedback = function(id) {
-            if (confirm('আপনি কি এই মতামতটি মুছে ফেলতে চান?')) {
-                remove(ref(db, `feedbacks/${id}`));
-            }
+        window.approvePayment = function(pId, phone, amount) {
+            const currentBal = window.dbData.customers[phone]?.balance || 0;
+            update(ref(db, `customers/${phone}`), { balance: currentBal + amount });
+            update(ref(db, `payments/${pId}`), { status: 'Approved' });
+            alert('পেমেন্ট সফলভাবে অনুমোদন এবং ব্যালেন্স যুক্ত করা হয়েছে!');
         };
 
-        // --- Database Actions (Tabs) ---
+        window.rejectPayment = function(pId) {
+            update(ref(db, `payments/${pId}`), { status: 'Rejected' });
+        };
 
+        // --- Admin Actions (Tabs & Notices) ---
         window.saveTab = function() {
             const editId = document.getElementById('editTabId').value;
             const selectIcon = document.getElementById('tabIcon').value;
@@ -954,22 +1418,16 @@
             const desc = document.getElementById('tabDesc').value.trim();
 
             let finalIcon = selectIcon === 'manual' ? manualIcon : selectIcon;
-
-            if (!finalIcon || !title || !desc) {
-                alert('দয়া করে সকল তথ্য সঠিকভাবে পূরণ করুন।');
-                return;
-            }
+            if (!finalIcon || !title || !desc) { alert('সকল তথ্য পূরণ করুন।'); return; }
 
             const tabData = { icon: finalIcon, title: title, desc: desc };
 
             if (editId) {
                 update(ref(db, `tabs/${editId}`), tabData);
-                alert('ট্যাব আপডেট সফল হয়েছে!');
             } else {
+                tabData.order = Object.keys(window.dbData.tabs).length;
                 push(ref(db, 'tabs'), tabData);
-                alert('নতুন ট্যাব ডেটাবেজে যুক্ত হয়েছে!');
             }
-
             resetTabForm();
         };
 
@@ -990,53 +1448,39 @@
                 document.getElementById('manualIconInput').value = tab.icon;
             }
 
-            document.getElementById('tabPanelTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> সার্ভিস এডিট করুন';
             document.getElementById('saveTabBtn').innerText = 'আপডেট করুন';
             document.getElementById('cancelTabBtn').style.display = 'block';
-            document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
         };
 
         window.deleteTab = function(id) {
-            if (confirm('আপনি কি নিশ্চিত যে এই ট্যাবটি মুছে ফেলতে চান?')) {
-                remove(ref(db, `tabs/${id}`));
-            }
+            if (confirm('ট্যাবটি মুছে ফেলতে চান?')) remove(ref(db, `tabs/${id}`));
         };
 
         window.resetTabForm = function() {
             document.getElementById('editTabId').value = '';
             document.getElementById('tabTitle').value = '';
             document.getElementById('tabDesc').value = '';
-            document.getElementById('manualIconInput').value = '';
-            document.getElementById('tabIcon').value = 'fa-laptop-code';
-            document.getElementById('manualIconGroup').style.display = 'none';
-            document.getElementById('tabPanelTitle').innerHTML = '<i class="fa-solid fa-plus-circle"></i> নতুন সার্ভিস/ট্যাব যুক্ত করুন';
             document.getElementById('saveTabBtn').innerText = 'পাবলিশ করুন';
             document.getElementById('cancelTabBtn').style.display = 'none';
         };
 
-        // --- Database Actions (Notices) ---
-
+        // Save Notice with Link
         window.saveNotice = function() {
             const editId = document.getElementById('editNoticeId').value;
             const title = document.getElementById('noticeTitle').value.trim();
             const desc = document.getElementById('noticeDesc').value.trim();
+            const link = document.getElementById('noticeLink').value.trim();
             const expiry = document.getElementById('noticeExpiry').value;
 
-            if (!title || !desc || !expiry) {
-                alert('দয়া করে নোটিশের সকল ফিল্ড পূরণ করুন।');
-                return;
-            }
+            if (!title || !desc || !expiry) { alert('নোটিশের সকল ফিল্ড পূরণ করুন।'); return; }
 
-            const noticeData = { title: title, desc: desc, expiry: expiry };
+            const noticeData = { title, desc, link, expiry };
 
             if (editId) {
                 update(ref(db, `notices/${editId}`), noticeData);
-                alert('নোটিশ আপডেট হয়েছে!');
             } else {
                 push(ref(db, 'notices'), noticeData);
-                alert('নোটিশ সফলভাবে ফায়ারবেসে পোস্ট হয়েছে!');
             }
-
             resetNoticeForm();
         };
 
@@ -1045,31 +1489,68 @@
             document.getElementById('editNoticeId').value = id;
             document.getElementById('noticeTitle').value = notice.title;
             document.getElementById('noticeDesc').value = notice.desc;
+            document.getElementById('noticeLink').value = notice.link || '';
             document.getElementById('noticeExpiry').value = notice.expiry;
 
-            document.getElementById('noticePanelTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> নোটিশ এডিট করুন';
             document.getElementById('saveNoticeBtn').innerText = 'আপডেট করুন';
             document.getElementById('cancelNoticeBtn').style.display = 'block';
-            document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
         };
 
         window.deleteNotice = function(id) {
-            if (confirm('আপনি কি নিশ্চিত যে এই নোটিশটি মুছে ফেলতে চান?')) {
-                remove(ref(db, `notices/${id}`));
-            }
+            if (confirm('নোটিশটি মুছে ফেলতে চান?')) remove(ref(db, `notices/${id}`));
         };
 
         window.resetNoticeForm = function() {
             document.getElementById('editNoticeId').value = '';
             document.getElementById('noticeTitle').value = '';
             document.getElementById('noticeDesc').value = '';
+            document.getElementById('noticeLink').value = '';
             document.getElementById('noticeExpiry').value = '';
-            document.getElementById('noticePanelTitle').innerHTML = '<i class="fa-solid fa-bullhorn"></i> নতুন নোটিশ পাবলিশ করুন';
             document.getElementById('saveNoticeBtn').innerText = 'নোটিশ পোস্ট করুন';
             document.getElementById('cancelNoticeBtn').style.display = 'none';
         };
 
-        // --- Auth & Modals Logic ---
+        // Feedback & Auth
+        window.renderAdminFeedbacks = function() {
+            const container = document.getElementById('adminFeedbackContainer');
+            container.innerHTML = '';
+            const keys = Object.keys(window.dbData.feedbacks);
+            if (keys.length === 0) {
+                container.innerHTML = '<p style="color:#9ca3af; font-size:13px;">কোনো মতামত জমা হয়নি।</p>';
+                return;
+            }
+            keys.reverse().forEach(key => {
+                const fb = window.dbData.feedbacks[key];
+                const card = document.createElement('div');
+                card.className = 'feedback-card';
+                card.innerHTML = `
+                    <div class="feedback-header">
+                        <span><i class="fa-solid fa-user"></i> ${escapeHtml(fb.name)} ${fb.phone ? '(' + escapeHtml(fb.phone) + ')' : ''}</span>
+                        <button class="btn-sm delete-btn" style="display: inline-block;" onclick="deleteFeedback('${key}')"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <div class="feedback-text">${escapeHtml(fb.comment)}</div>
+                    <div class="feedback-time">${fb.date || ''}</div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+        window.submitFeedback = function() {
+            const name = document.getElementById('fbName').value.trim();
+            const phone = document.getElementById('fbPhone').value.trim();
+            const comment = document.getElementById('fbComment').value.trim();
+            if (!name || !comment) { alert('নাম ও মতামত লিখুন।'); return; }
+
+            push(ref(db, 'feedbacks'), { name, phone, comment, date: new Date().toLocaleString('bn-BD') })
+                .then(() => {
+                    alert('ধন্যবাদ!');
+                    closeFeedbackModal();
+                });
+        };
+
+        window.deleteFeedback = function(id) {
+            if (confirm('মুছে ফেলতে চান?')) remove(ref(db, `feedbacks/${id}`));
+        };
 
         window.toggleAuth = function() {
             if (window.isLoggedIn) {
@@ -1078,32 +1559,17 @@
                 authBtn.innerText = 'Login';
                 authBtn.classList.remove('logout-btn');
                 document.getElementById('admin-panel').style.display = 'none';
-                resetTabForm();
-                resetNoticeForm();
                 renderTabs();
                 renderNotices();
-                alert('সফলভাবে লগআউট হয়েছে!');
             } else {
                 openLoginModal();
             }
         };
 
-        window.openLoginModal = function() {
-            document.getElementById('loginModal').style.display = 'flex';
-        };
-
-        window.closeLoginModal = function() {
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('loginError').style.display = 'none';
-        };
-
-        window.openFeedbackModal = function() {
-            document.getElementById('feedbackModal').style.display = 'flex';
-        };
-
-        window.closeFeedbackModal = function() {
-            document.getElementById('feedbackModal').style.display = 'none';
-        };
+        window.openLoginModal = function() { document.getElementById('loginModal').style.display = 'flex'; };
+        window.closeLoginModal = function() { document.getElementById('loginModal').style.display = 'none'; };
+        window.openFeedbackModal = function() { document.getElementById('feedbackModal').style.display = 'flex'; };
+        window.closeFeedbackModal = function() { document.getElementById('feedbackModal').style.display = 'none'; };
 
         window.handleLogin = function() {
             const idInput = document.getElementById('username').value;
@@ -1116,12 +1582,9 @@
                 authBtn.innerText = 'Logout';
                 authBtn.classList.add('logout-btn');
                 document.getElementById('admin-panel').style.display = 'block';
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
                 renderTabs();
                 renderNotices();
                 renderAdminFeedbacks();
-                alert('সফলভাবে এডমিন লগইন হয়েছে!');
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
@@ -1129,23 +1592,30 @@
 
         window.checkManualIconOption = function() {
             const select = document.getElementById('tabIcon');
-            const manualGroup = document.getElementById('manualIconGroup');
-            manualGroup.style.display = select.value === 'manual' ? 'block' : 'none';
+            document.getElementById('manualIconGroup').style.display = select.value === 'manual' ? 'block' : 'none';
         };
 
         window.showDetails = function(id) {
             const tab = window.dbData.tabs[id];
             document.getElementById('detModalTitle').innerText = tab.title;
             document.getElementById('detModalDesc').innerText = tab.desc;
+            document.getElementById('detModalLinkArea').innerHTML = '';
             document.getElementById('detailsModal').style.display = 'flex';
         };
 
-        window.closeDetailsModal = function() {
-            document.getElementById('detailsModal').style.display = 'none';
+        window.showNoticeDetails = function(id) {
+            const notice = window.dbData.notices[id];
+            document.getElementById('detModalTitle').innerText = notice.title;
+            document.getElementById('detModalDesc').innerText = `${notice.desc}\n\nমেয়াদ: ${notice.expiry}`;
+            let linkArea = document.getElementById('detModalLinkArea');
+            linkArea.innerHTML = notice.link ? `<a href="${escapeHtml(notice.link)}" target="_blank" style="color:#38bdf8; font-weight:bold;"><i class="fa-solid fa-external-link"></i> নোটিশ লিংক ওপেন করুন</a>` : '';
+            document.getElementById('detailsModal').style.display = 'flex';
         };
 
+        window.closeDetailsModal = function() { document.getElementById('detailsModal').style.display = 'none'; };
+
         function escapeHtml(text) {
-            return text
+            return (text || '')
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
@@ -1157,6 +1627,9 @@
             if (event.target == document.getElementById('loginModal')) closeLoginModal();
             if (event.target == document.getElementById('detailsModal')) closeDetailsModal();
             if (event.target == document.getElementById('feedbackModal')) closeFeedbackModal();
+            if (event.target == document.getElementById('customerModal')) closeCustomerModal();
+            if (event.target == document.getElementById('adminUploadModal')) closeAdminUploadModal();
+            if (event.target == document.getElementById('paymentModal')) closePaymentModal();
         };
     </script>
 </body>
